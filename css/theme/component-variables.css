@@ -1,0 +1,63 @@
+:root {
+    --box-radius-xxxl: 20px;
+    --box-radius-xxl: 16px;
+    --box-radius-xl: 12px;
+    --box-radius-lg: 8px;
+    --box-radius-md: 6px;
+    --box-radius-sm: 4px;
+    --box-radius-xs: 2px;
+
+    --box-radius-circle: 50%;
+    --box-radius-half-circle: 25%;
+
+    --svg-height-xxxl: 48px;
+    --svg-height-xxl: 40px;
+    --svg-height-xl: 32px;
+    --svg-height-lg: 24px;
+    --svg-height-md: 20px;
+    --svg-height-sm: 16px;
+    --svg-height-xs: 12px;
+    --svg-height-xxs: 8px;
+
+    --transition-fast: 0.1s;
+    --transition-medium: 0.2s;
+    --transition-slow: 0.3s;
+    --transition-very-slow: 0.5s;
+
+    --translation-x-short: 1px;
+    --translation-x-medium: 2px;
+    --translation-x-long: 3px;
+
+    --translation-y-short: 1px;
+    --translation-y-medium: 2px;
+    --translation-y-long: 3px;
+
+    --padding-xxxl: 32px;
+    --padding-xxl: 24px;
+    --padding-xl: 20px;
+    --padding-lg: 16px;
+    --padding-md: 12px;
+    --padding-sm: 8px;
+    --padding-xs: 4px;
+    --padding-xxs: 2px;
+
+    --margin-xxxl: 32px;
+    --margin-xxl: 24px;
+    --margin-xl: 20px;
+    --margin-lg: 16px;
+    --margin-md: 12px;
+    --margin-sm: 8px;
+    --margin-xs: 4px;
+    --margin-xxs: 2px;
+
+    --border-width-xxxl: 4px;
+    --border-width-xxl: 3px;
+    --border-width-xl: 2px;
+    --border-width-lg: 1.5px;
+    --border-width-md: 1px;
+    --border-width-sm: 0.5px;
+
+    --box-shadow-length-short: 2px;
+    --box-shadow-length-medium: 4px;
+    --box-shadow-length-long: 6px;
+}
