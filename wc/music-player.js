@@ -382,18 +382,18 @@ export class MusicPlayer extends BaseElement {
           input[type="range"] {
             -webkit-appearance: none; appearance: none;
             width: 100%; height: 4px; border-radius: 999px;
-            background: var(--dark-purple-300, #312153);
-            accent-color: var(--main-purple-200, #6528c6);
+            background: var(--thumb-track-100, #5A546A);
+            accent-color: var(--thumb-purple-100, #A88BFA);
           }
           input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%;
-            background: var(--main-purple-200, #6528c6); cursor: pointer;
+            background: var(--thumb-purple-100, #A88BFA); cursor: pointer;
           }
           input[type="range"]::-moz-range-thumb {
             width: 12px; height: 12px; border-radius: 50%; border: none;
-            background: var(--main-purple-200, #6528c6); cursor: pointer;
+            background: var(--thumb-purple-100, #A88BFA); cursor: pointer;
           }
-          .volume-slider { width: 90px; }
+          input[type="range"].volume-slider { width: 90px; }
 
           /* --- right cluster --- */
           .right-cluster { display: flex; align-items: center; justify-content: flex-end; gap: var(--padding-sm, 8px); position: relative; }
@@ -411,6 +411,7 @@ export class MusicPlayer extends BaseElement {
             box-shadow: 0 8px 24px color-mix(in srgb, var(--pure-black, #000) 40%, transparent);
             padding: var(--padding-sm, 8px);
             display: none;
+            z-index: 10;
           }
           .queue-panel.open { display: block; }
           .queue-item {

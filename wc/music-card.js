@@ -30,7 +30,8 @@
  *             "is this card's track the one currently playing")
  *   title     track title
  *   artist    artist name
- *   cover     album art image URL
+ *   cover     album art image URL (optional — if omitted, or if the image
+ *             fails to load, the card just shows the color1/color2 gradient)
  *   duration  track length in seconds (used as a display fallback before
  *             the player has loaded real audio metadata)
  *   src       audio file URL
@@ -157,6 +158,7 @@ export class MusicCard extends BaseElement {
             object-fit: cover;
             display: block;
           }
+          .cover[hidden] { display: none; }
           .overlay {
             position: absolute;
             inset: 0;
@@ -270,10 +272,15 @@ export class MusicCard extends BaseElement {
           })
         );
       });
+      this._els.cover.addEventListener('error', () => {
+        // A cover URL that 404s or fails to load falls back to the
+        // gradient too, not just a missing/empty cover attribute.
+        this._els.cover.hidden = true;
+      });
     }
 
     const track = this._track();
-    
+
     if (track.color1) {
       this._els.coverWrap.style.setProperty('--card-color1', track.color1);
     } else {
@@ -286,7 +293,16 @@ export class MusicCard extends BaseElement {
       this._els.coverWrap.style.removeProperty('--card-color2');
     }
 
-    this._els.cover.src = track.cover;
+    if (track.cover) {
+      this._els.cover.hidden = false;
+      this._els.cover.src = track.cover;
+    } else {
+      // No cover art — hide the <img> entirely so the color1/color2
+      // gradient background on .cover-wrap shows through instead of
+      // a broken-image icon.
+      this._els.cover.hidden = true;
+      this._els.cover.removeAttribute('src');
+    }
     this._els.cover.alt = track.title ? `${track.title} cover art` : '';
     this._els.title.textContent = track.title;
     this._els.title.title = track.title;

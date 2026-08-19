@@ -53,6 +53,9 @@
     --white-200: #FEFEFF;
 
     --pure-black: #000000;
+
+    --thumb-purple-100: #A88BFA;
+    --thumb-track-100: #5A546A;
 }
 
 [data-theme = "dark"] {

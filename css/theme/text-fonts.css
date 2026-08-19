@@ -63,6 +63,17 @@ html {
     text-overflow: ellipsis;
 }
 
+.textMediumLarge {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-regular);
+    font-family: 'Nunito', sans-serif;
+    line-height: 1;
+    text-decoration: none;
+    white-space: no-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .textMedium {
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-regular);
@@ -86,6 +97,14 @@ html {
 }
 
 .labelLarge {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    font-family: 'Nunito', sans-serif;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.labelMediumLarge {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-medium);
     font-family: 'Nunito', sans-serif;
