@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="./css/theme/text-fonts.css">
     <link rel="stylesheet" href="./css/theme/component-variables.css">
     <link rel="stylesheet" href="./css/styles/header-body.css">
-    <link rel="stylesheet" href="./css/styles/main.css">
+    <link rel="stylesheet" href="./css/styles/main-playlist-adjuster.css">
+    <link rel="stylesheet" href="./css/styles/home.css">
     <script type="module" src="./scripts/index.js"></script>
       <style>
     /* Style the children inside the scroll box */
@@ -84,7 +85,142 @@
             <div id="adjuster">
                 <div class="line"></div>
             </div>
-            <div id="pages">
+            <div id="home">
+                <scroll-col key="home-page-scroller" persist="session" gap="20px">
+                    <div id="recommended-music-section" class="section">
+                        <div class="section-header">
+                            <span class="subtitle">Recommended musics for you</span>
+                            <span><button class="see-more-btn textSmall">See more</button></span>
+                        </div>
+                        <scroll-row key="music-cards" persist="session" gap="10px" style="padding: 0 20px;">
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                        </scroll-row>
+                    </div>
+                    <div id="explore-playlists-section" class="music-section">
+                        <div class="section-header">
+                            <span class="subtitle">Explore others playlist</span>
+                            <span><button class="see-more-btn textSmall">See more</button></span>
+                        </div>
+                        <scroll-row key="playlist-cards" persist="session" gap="10px" style="padding: 0 20px;">
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                        </scroll-row>
+                    </div>
+                    <div id="recommended-music-section" class="section">
+                        <div class="section-header">
+                            <span class="subtitle">Recommended musics for you</span>
+                            <span><button class="see-more-btn textSmall">See more</button></span>
+                        </div>
+                        <scroll-row key="music-cards" persist="session" gap="10px" style="padding: 0 20px;">
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                        </scroll-row>
+                    </div>
+                    <div id="explore-playlists-section" class="music-section">
+                        <div class="section-header">
+                            <span class="subtitle">Explore others playlist</span>
+                            <span><button class="see-more-btn textSmall">See more</button></span>
+                        </div>
+                        <scroll-row key="playlist-cards" persist="session" gap="10px" style="padding: 0 20px;">
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                        </scroll-row>
+                    </div>
+                    <div id="recommended-music-section" class="section">
+                        <div class="section-header">
+                            <span class="subtitle">Recommended musics for you</span>
+                            <span><button class="see-more-btn textSmall">See more</button></span>
+                        </div>
+                        <scroll-row key="music-cards" persist="session" gap="10px" style="padding: 0 20px;">
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                        </scroll-row>
+                    </div>
+                    <div id="explore-playlists-section" class="music-section">
+                        <div class="section-header">
+                            <span class="subtitle">Explore others playlist</span>
+                            <span><button class="see-more-btn textSmall">See more</button></span>
+                        </div>
+                        <scroll-row key="playlist-cards" persist="session" gap="10px" style="padding: 0 20px;">
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                            <music-card></music-card>
+                        </scroll-row>
+                    </div>
+                </scroll-col>
+
                 
             </div>
         </div>

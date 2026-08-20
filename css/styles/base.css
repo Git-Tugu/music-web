@@ -41,3 +41,12 @@ html {
     align-items: center;
     gap: 5px;
 }
+
+.see-more-btn {
+    border-radius: 9999px;
+    border-color: var(--main-purple-100);
+    padding: 2px 5px;
+    background: var(--main-purple-100);
+    color: var(--pure-white);
+    box-shadow: var(--box-shadow-default);
+}

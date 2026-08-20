@@ -63,6 +63,7 @@ export class ScrollBox extends BaseElement {
     super();
     this._scrollEl = null;
     this._onScroll = this._onScroll.bind(this);
+    this._onWheel = this._onWheel.bind(this);
     this._writeFrame = null;
     this._resizeObserver = null;
     this._restoreState = null; // { target, hits, deadline }
@@ -74,7 +75,10 @@ export class ScrollBox extends BaseElement {
   }
 
   disconnectedCallback() {
-    if (this._scrollEl) this._scrollEl.removeEventListener('scroll', this._onScroll);
+    if (this._scrollEl) {
+      this._scrollEl.removeEventListener('scroll', this._onScroll);
+      this._scrollEl.removeEventListener('wheel', this._onWheel);
+    }
     if (this._resizeObserver) this._resizeObserver.disconnect();
     if (this._writeFrame) cancelAnimationFrame(this._writeFrame);
     this._resizeObserver = null;
@@ -119,6 +123,43 @@ export class ScrollBox extends BaseElement {
         /* storage full/unavailable - ignore */
       }
     });
+  }
+
+  /**
+   * Native scroll-chaining (letting an unhandled wheel delta bubble to the
+   * next scrollable ancestor once this box can't consume it) is unreliable
+   * across browsers/trackpads: a trackpad's tiny cross-axis jitter is often
+   * enough for the browser to "commit" the whole gesture to this box and
+   * never chain the rest up, even though the cross axis has nothing to
+   * scroll. So instead of hoping for that, explicitly detect it here: if the
+   * gesture's dominant axis isn't this box's own scrolling axis (e.g. a
+   * mostly-vertical wheel over a horizontal scroll-row), hand the delta to
+   * the nearest ancestor ScrollBox that scrolls along that axis and stop
+   * the event here.
+   */
+  _onWheel(e) {
+    if (!this._scrollEl) return;
+    const dominantAxis = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? 'y' : 'x';
+    const ownAxis = this.direction === 'column' ? 'y' : 'x';
+    if (dominantAxis === ownAxis) return; // this box's own scroller handles it natively
+
+    let node = this.parentElement;
+    let target = null;
+    while (node) {
+      if (node instanceof ScrollBox && node._scrollEl) {
+        const theirAxis = node.direction === 'column' ? 'y' : 'x';
+        if (theirAxis === dominantAxis) {
+          target = node;
+          break;
+        }
+      }
+      node = node.parentElement;
+    }
+    if (!target) return; // no matching ancestor - let the browser do whatever it would anyway
+
+    e.preventDefault();
+    if (dominantAxis === 'y') target._scrollEl.scrollTop += e.deltaY;
+    else target._scrollEl.scrollLeft += e.deltaX;
   }
 
   _beginRestore() {
@@ -176,7 +217,16 @@ export class ScrollBox extends BaseElement {
             display: flex;
             flex-direction: var(--el-flow, row);
             gap: var(--el-gap, 0.5em);
-            overflow: auto;
+            /* Only the scrolling axis is a scroll container. If both axes
+               used a blanket 'overflow: auto', the cross axis (e.g. vertical
+               on a scroll-row, which never actually overflows) would still
+               count as "scrollable, permanently at both boundaries" — and
+               with overscroll-behavior: contain below, wheel input on that
+               axis gets swallowed right there instead of bubbling up to an
+               ancestor scroller (e.g. scrolling down while hovering a
+               horizontal scroll-row inside a vertical scroll-col). */
+            overflow-x: var(--el-overflow-x, auto);
+            overflow-y: var(--el-overflow-y, auto);
             overscroll-behavior: contain;
             scroll-snap-type: var(--el-snap, none);
             width: var(--el-width, 100%);
@@ -211,6 +261,7 @@ export class ScrollBox extends BaseElement {
       `;
       this._scrollEl = this.$('.scroll');
       this._scrollEl.addEventListener('scroll', this._onScroll, { passive: true });
+      this._scrollEl.addEventListener('wheel', this._onWheel, { passive: false });
     }
 
     this.style.setProperty('--el-flow', this.direction === 'column' ? 'column' : 'row');
@@ -218,6 +269,12 @@ export class ScrollBox extends BaseElement {
       '--el-snap',
       this.boolAttr('snap', false) ? (this.direction === 'column' ? 'y mandatory' : 'x mandatory') : 'none'
     );
+    // Only the element's own scrolling axis becomes a scroll container —
+    // the cross axis is left non-scrolling (see .scroll comment above) so
+    // wheel/touch input in that direction chains to an ancestor scroller
+    // instead of being captured here.
+    this.style.setProperty('--el-overflow-x', this.direction === 'column' ? 'hidden' : 'auto');
+    this.style.setProperty('--el-overflow-y', this.direction === 'column' ? 'auto' : 'hidden');
 
     // Scrollbar is hidden unless explicitly turned on. When on, the visible
     // thickness reads from --el-scrollbar-size (set via the `scrollbar-size`

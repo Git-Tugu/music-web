@@ -1,0 +1,34 @@
+#home {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background: var(--pure-white);
+    box-shadow: var(--box-shadow-default);
+    border-radius: var(--box-radius-xxxl);
+    overflow: hidden;
+}
+
+/* <scroll-col> is a plain block box by default, so a block parent (#home)
+   never hands it a height on its own — it just grows to fit its content,
+   which is why the sidebar's overflow:hidden was silently clipping instead
+   of a scrollbar ever appearing. flex:1 + min-height:0 gives it a real,
+   bounded height from #home's flex layout; --el-height:100% then carries
+   that sizing across the shadow boundary (custom properties inherit through
+   shadow DOM) so scroll-box.js's internal `.scroll` div — which reads
+   height from var(--el-height, auto) — resolves to 100% instead of auto. */
+#home > scroll-col {
+    flex: 1 1 auto;
+    min-height: 0;
+    --el-height: 100%;
+}
+
+.section-header {
+    display: flex;
+    margin: 0 20px 5px;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.section {
+    margin: 20px 0;
+}

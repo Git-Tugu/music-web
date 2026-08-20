@@ -46,6 +46,7 @@
     box-shadow: var(--box-shadow-default);
     border-radius: var(--box-radius-xxxl);
     transition: img var(--transition-slow) ease-in-out;
+    overflow: hidden;
 }
 
 #playlist > div {
@@ -75,13 +76,8 @@
         display: none;
     }
 
-    .playlist-search input{
-        display: none;
-    }
-
     .playlist-search {
-        justify-content: center;
-        margin: 0px 16px;
+        display: none;
     }
 }
 
@@ -146,14 +142,6 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-}
-
-#pages {
-    box-sizing: border-box;
-    height: 100%;
-    background: var(--pure-white);
-    box-shadow: var(--box-shadow-default);
-    border-radius: var(--box-radius-xxxl);
 }
 
 /* ---------- Playlist list / grid view switcher ---------- */
