@@ -1,3 +1,321 @@
-#app {
-    background-color: var(--light-purple-100, #fff);
+#main {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: var(--playlist-sidebar-width) 10px 1fr;
+    margin: 0px 10px 10px 10px;
+    min-height: 0;
+    height: calc(100% - 10px);
+}
+
+.line {
+    width: 2px;
+    height: calc(100% - 40px);
+    background: var(--pure-white);
+    border-radius: 1px;
+    opacity: 0.3; 
+    transition: opacity var(--transition-fast); /* Smooth fade effect */
+}
+
+#adjuster {
+    width: 10px;
+    cursor: grab;
+
+    display: flex;
+    justify-content: center; /* Centers the line horizontally */
+    align-items: center;
+
+    transition: opacity ease-in-out var(--transition-fast);
+}
+
+#adjuster:hover .line {
+    opacity: 1;
+}
+
+#adjuster.grabbing {
+    cursor: grabbing;
+}
+
+#playlist {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    width: var(--playlist-sidebar-width);
+    background: var(--pure-white);
+    box-shadow: var(--box-shadow-default);
+    border-radius: var(--box-radius-xxxl);
+    transition: img var(--transition-slow) ease-in-out;
+}
+
+#playlist > div {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1;
+}
+
+#playlist:hover {
+    #playlist-header img {
+        display: block;
+        transition: img var(--transition-slow) ease-in-out;
+    }
+}
+
+#playlist.collapsed {
+    width: 70px;
+
+    #playlist-header img {
+        display: block;
+        transform: rotate(180deg);
+        transition: img var(--transition-fast) ease-in-out;
+    }
+
+    #playlist-header span {
+        display: none;
+    }
+
+    .playlist-search input{
+        display: none;
+    }
+
+    .playlist-search {
+        justify-content: center;
+        margin: 0px 16px;
+    }
+}
+
+#playlist-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 25px;
+    gap: 20px;
+    transition: img var(--transition-fast) ease-in-out;
+}
+
+#playlist-header img {
+    display: none;
+}
+
+#playlist-header img:hover {
+    transform: scale(1.1);
+    transition: img var(--transition-fast) ease-in-out;
+}
+
+.playlist-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 10px;
+    background: var(--light-purple-400, #E9E8FF);
+    padding: 6px 10px;
+    border-radius: 999px;
+    box-shadow: none;
+}
+
+.playlist-search input[type="search"] {
+    border: none;
+    outline: none;
+    width: 100%;
+    background: transparent;
+    font-size: 14px;
+}
+
+.playlist-search #playlist-search-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.util {
+    display: flex;
+    margin: 10px 20px;
+    justify-content: space-between;
+}
+
+.button-icon {
+    display: flex;
+    background: var(--main-purple-200);
+    border-radius: 50%;
+    padding: 7px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#pages {
+    box-sizing: border-box;
+    height: 100%;
+    background: var(--pure-white);
+    box-shadow: var(--box-shadow-default);
+    border-radius: var(--box-radius-xxxl);
+}
+
+/* ---------- Playlist list / grid view switcher ---------- */
+
+#playlist-view-toggle {
+    transition: background var(--transition-fast) ease-in-out;
+}
+
+#playlist-view-toggle[aria-pressed="true"] {
+    background: var(--main-purple-200);
+}
+
+#playlist-view-toggle[aria-pressed="true"] img {
+    filter: brightness(0) invert(1);
+}
+
+.playlist-list {
+    box-sizing: border-box;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 10px;
+}
+
+.playlist-item {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: var(--margin-md);
+    border-radius: var(--box-radius-lg);
+    padding: 5px 0;
+    cursor: pointer;
+    min-width: 0;
+    transition: background var(--transition-fast) ease-in-out;
+}
+
+.playlist-item:hover,
+.playlist-item:focus-visible {
+    background: var(--light-purple-600, #F9F6FE);
+}
+
+.playlist-thumb {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: var(--box-radius-md);
+    color: var(--pure-white);
+    overflow: hidden;
+}
+
+.playlist-thumb img.thumb-icon {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.playlist-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.playlist-name {
+    color: var(--dark-purple-100);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.playlist-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--dark-purple-500);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.playlist-meta .pin-icon {
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+}
+
+/* List view: single column, row items */
+.playlist-list.list-view {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grid view: tiled cards, thumb on top, text below */
+.playlist-list.grid-view {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.playlist-list.grid-view .playlist-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--margin-sm);
+    padding: var(--padding-sm);
+    min-width: 0;
+}
+
+.playlist-list.grid-view .playlist-thumb {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--box-radius-lg);
+}
+
+.playlist-list.grid-view .playlist-thumb img.thumb-icon {
+    width: 30%;
+    height: 30%;
+}
+
+.playlist-list.grid-view .playlist-info {
+    width: 100%;
+}
+
+.playlist-list.grid-view .playlist-name,
+.playlist-list.grid-view .playlist-meta {
+    width: 100%;
+}
+
+/* Collapsed sidebar (70px): show thumbnails only, stacked in a single
+   column — 50x50 thumbs, 10px side margins, 10px gap between items,
+   regardless of whichever view (list/grid) was active before collapsing. */
+#playlist.collapsed .playlist-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    overflow-x: hidden;
+}
+
+#playlist.collapsed .playlist-item {
+    width: 50px;
+    padding: 0;
+    margin: 0 10px;
+    gap: 0;
+}
+
+#playlist.collapsed .playlist-thumb {
+    width: 50px;
+    height: 50px;
+}
+
+#playlist.collapsed .playlist-info {
+    display: none;
+}
+
+#playlist.collapsed .util {
+    display: none;
 }

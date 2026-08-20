@@ -14,8 +14,11 @@
  * Usage:
  *   <script type="module" src="../components/index.js"></script>
  */
-export { BaseElement } from './base-element.js';
-export { ScrollBox , ScrollRow, ScrollCol } from './scroll-box.js';
-export { SvgIcon } from './svg-icon.js';
-export { MusicCard } from './music-card.js';
-export { MusicPlayer} from './music-player.js';
+export { BaseElement } from './wc/base-element.js';
+export { ScrollBox , ScrollRow, ScrollCol } from './wc/scroll-box.js';
+export { MusicCard } from './wc/music-card.js';
+export { MusicPlayer} from './wc/music-player.js';
+import './playlist-resizer.js';
+import './playlist-view.js';
+import './nav-search.js';
+import './login.js';

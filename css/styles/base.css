@@ -1,0 +1,43 @@
+/* 1. Standard Properties (Modern Firefox, Chrome, Safari, Edge) */
+html {
+  scrollbar-width: thin;               /* Options: auto | thin | none */
+  scrollbar-color: #888888 #f1f1f1;    /* thumb-color track-color */
+}
+
+/* 2. WebKit Pseudo-elements (Legacy Chrome, Safari, Edge) */
+/* The entire scrollbar area */
+::-webkit-scrollbar {
+  width: 10px;                         /* Width of vertical scrollbar */
+  height: 10px;                        /* Height of horizontal scrollbar */
+}
+
+/* The background track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 5px;
+}
+ 
+/* The draggable handle */
+::-webkit-scrollbar-thumb {
+  background: #888888; 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555555; 
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}

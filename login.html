@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-Register</title>
+    <!-- Font for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles/login-window.css">
+</head>
+<body>
+
+    <div class="container" id="container">
+
+        <!-- Drives the sign-in/sign-up slide purely in CSS via :has(). No JS needed. -->
+        <input type="checkbox" id="panel-toggle" hidden>
+
+        <!-- SIGN UP FORM (Left in CSS code, slides to Right when active) -->
+        <div class="form-container sign-up-container">
+            <form id="signUpForm">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+
+                <!-- Drives step-1/step-2 visibility purely in CSS. JS only flips
+                     this to checked, and only after Name + Email pass validation. -->
+                <input type="checkbox" id="step-toggle" hidden>
+
+                <!-- STEP 1: Name and Email -->
+                <div class="form-step step-1">
+                    <span>or use your email for registration</span>
+                    <input type="text" id="regName" placeholder="Name" required />
+                    <input type="email" id="regEmail" placeholder="Email" required />
+                    <button type="button" id="nextStepBtn">Next</button>
+                </div>
+
+                <!-- STEP 2: Password -->
+                <div class="form-step step-2">
+                    <span id="passwordRequirements" style="margin-bottom: 8px; text-align: center; color: var(--color-background-grey3);">
+                        Password must contain an uppercase letter, a lowercase letter, a number, and a symbol (English alphabet only).
+                    </span>
+
+                    <div class="password-wrapper">
+                        <input type="checkbox" class="password-toggle-input" id="regPasswordToggle" hidden>
+                        <input type="text" id="regPassword" class="password-field" placeholder="Password" required />
+                        <label for="regPasswordToggle" class="password-toggle" aria-label="Toggle password visibility">
+                            <img src="../icons/eye-closed.svg" alt="hide pass" class="eye-icon eye-closed">
+                            <img src="../icons/eye-show.svg" alt="show pass" class="eye-icon eye-open">
+                        </label>
+                    </div>
+
+                    <div class="password-wrapper">
+                        <input type="checkbox" class="password-toggle-input" id="regConfirmPasswordToggle" hidden>
+                        <input type="text" id="regConfirmPassword" class="password-field" placeholder="Confirm Password" required />
+                        <label for="regConfirmPasswordToggle" class="password-toggle" aria-label="Toggle password visibility">
+                            <img src="../icons/eye-closed.svg" alt="hide pass" class="eye-icon eye-closed">
+                            <img src="../icons/eye-show.svg" alt="show pass" class="eye-icon eye-open">
+                        </label>
+                    </div>
+
+                    <span id="passwordError" style="color: #ff4b2b; display: none; font-weight: bold; margin-top: 5px; text-align: center;"></span>
+
+                    <div style="display: flex; gap: 10px; width: 100%; margin-top: 15px;">
+                        <label for="step-toggle" id="prevStepBtn" class="ghost as-button" style="border-color: #ff4b2b; color: #ff4b2b; flex: 1; margin-top: 0;">Back</label>
+                        <button type="submit" id="submitRegBtn" style="white-space: nowrap; flex: 1; margin-top: 0;">Sign Up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- SIGN IN FORM (Right in CSS code, slides to Left when active) -->
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span>
+                <input type="email" placeholder="Email" required />
+
+                <div class="password-wrapper">
+                    <input type="checkbox" class="password-toggle-input" id="loginPasswordToggle" hidden>
+                    <input type="text" class="password-field" placeholder="Password" required />
+                    <label for="loginPasswordToggle" class="password-toggle" aria-label="Toggle password visibility">
+                        <img src="../icons/eye-closed.svg" alt="hide pass" class="eye-icon eye-closed">
+                        <img src="../icons/eye-show.svg" alt="show pass" class="eye-icon eye-open">
+                    </label>
+                </div>
+
+                <a class="forgot-password" href="#">Forgot your password?</a>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+
+        <!-- OVERLAY SLIDER CONTAINER -->
+        <div class="overlay-container">
+            <div class="overlay">
+
+                <!-- Left Overlay: Prompts User to Sign In -->
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <label for="panel-toggle" class="ghost as-button" id="signIn">Sign In</label>
+                </div>
+
+                <!-- Right Overlay: Prompts User to Register -->
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <label for="panel-toggle" class="ghost as-button" id="signUp">Sign Up</label>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../scripts/login.js" defer> </script>
+</body>
+</html>

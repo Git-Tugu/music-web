@@ -1,0 +1,107 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    background: var(--light-purple-300);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 5px 20px;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background: var(--pure-white, #ffffff);
+    width: var(--nav-width, clamp(900px, 1000px, 1200px));
+    height: var(--nav-heigth, 50px);
+    border-radius: var(--box-radius-circle-side, 9999px);
+    box-shadow: var(--box-shadow-default);
+}
+
+.center-nav-sector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--light-purple-50, #f5f3ff);
+    padding: 6px 10px;
+    border-radius: 999px;
+    box-shadow: none;
+}
+
+.nav-search input[type="search"] {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 320px;
+    font-size: 14px;
+}
+
+.nav-search .search-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap; border: 0; padding: 0; margin: -1px;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none; /* Fixed: standard is -webkit-appearance, not appearance */
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+    background-image: url('../../assets/icons/cross.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    background-position: center;
+}
+
+.login-btn-home {
+    display: flex;
+    height: 30px;
+    width: 60px;
+    margin-right: -8px;
+    background-color: var(--main-purple-100);
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    box-shadow: var(--box-shadow-default);
+}
+
+main {
+    flex: 1; /* Take up remaining space below header */
+    overflow: hidden; 
+}
+

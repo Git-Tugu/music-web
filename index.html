@@ -4,19 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resolute Music</title>
+    <link rel="stylesheet" href="./css/styles/base.css">
     <link rel="stylesheet" href="./css/theme/app-colors.css">
     <link rel="stylesheet" href="./css/theme/text-fonts.css">
     <link rel="stylesheet" href="./css/theme/component-variables.css">
-    <script type="module" src="./wc/index.js"></script>
+    <link rel="stylesheet" href="./css/styles/header-body.css">
+    <link rel="stylesheet" href="./css/styles/main.css">
+    <script type="module" src="./scripts/index.js"></script>
+      <style>
+    /* Style the children inside the scroll box */
+    .product-card {
+      width: 200px;
+      height: 300px;
+      background-color: #f3f4f6;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="right-nav-sector">
+                <img src="./assets/icons/logo.svg" alt="logo" height="32px" color="var(--main-purple-100)">
+            </div>
+
+            <div class="center-nav-sector">
+                <form id="nav-search-form" class="nav-search" role="search">
+                    <button type="submit" class="search-btn" aria-label="Search">
+                        <img src="./assets/icons/search.svg" alt="search" height="20px">
+                    </button>
+                    <input name="q" type="search" class="textSmall" placeholder="Lets find what you are seeking" aria-label="Search input" />
+                </form>
+            </div>
+
+            <div class="left-nav-sector">
+                <div id="account-section">
+                    <div class="login-btn-home">
+                        <a href="./login.html" class="textMedium" style="color: var(--pure-white);">Log In</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
     <main>
-        <scroll-row>
-            <music-card id="song1" title="Song 1" artist="Artist 1" image="song1.jpg" color1="var(--main-purple-200, #6528c6)" color2="var(--main-purple-100, #a15de9)"></music-card>
-            <music-card id="song2" title="Song 2" artist="Artist 2" image="song2.jpg" color1="var(--main-blue-200, #2875f3)" color2="var(--main-blue-100, #5da9ff)"></music-card>
-            <music-card id="song3" title="Song 3" artist="Artist 3" image="song3.jpg" color1="var(--main-green-200, #28c96f)" color2="var(--main-green-100, #5dd99f)"></music-card>
-        </scroll-row>
-        <music-player></music-player>
+        <div id="main">
+            <div id="playlist">
+                <div>
+                    <div id="playlist-header">
+                        <img id="playlist-collapse-btn" src="./assets/icons/collapse.svg" alt="collapse" height="20px">
+                        <span class="textLarge">Playlists</span>
+                    </div>
+                    <form id="playlist-search-form" class="playlist-search" role="search">
+                        <button type="submit" id="playlist-search-btn" aria-label="Search">
+                            <img src="./assets/icons/search.svg" alt="search" height="20px">
+                        </button>
+                        <input name="q" type="search" class="textSmall" placeholder="Find your playlist" aria-label="Search input" style="color: var(--dark-purple-400)"/>
+                    </form>
+                    <div class="util">
+                        <span class="button-icon">
+                            <img src="./assets/icons/plus.svg" alt="add playlist" height="16">
+                        </span>
+                        <span class="row">
+                            <span id="listViewName" class="textMedium">
+                                Recent
+                            </span>
+                            <span id="playlist-view-toggle" class="button-icon" role="button" tabindex="0" aria-label="Switch to grid view" aria-pressed="false">
+                                <img id="playlist-view-icon" src="./assets/icons/playlist-view.svg" alt="list-view-menu" height="16">
+                            </span>
+                        </span>
+                    </div>
+                    <div id="playlist-list" class="playlist-list list-view"></div>
+                </div>
+            </div>
+            <div id="adjuster">
+                <div class="line"></div>
+            </div>
+            <div id="pages">
+                
+            </div>
+        </div>
     </main>
 </body>
 </html>

@@ -6,7 +6,7 @@
  * radius/transition/gap attribute -> CSS var wiring for free.
  *
  * Usage:
- *   <scroll-row key="homepage-carousel" height="140px">
+ *   <scroll-row key="homepage-carousel" width="140px">
  *     <img src="a.jpg"><img src="b.jpg"><img src="c.jpg">
  *   </scroll-row>
  *

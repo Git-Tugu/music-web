@@ -1,0 +1,458 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-background-pitchBlack: #000000;
+    --color-background-white: #ffffff;
+    --color-text-grey: hsl(0, 0%, 56%);
+    --color-background-black: hsl(0, 0%, 7%);
+    --color-background-grey: hsl(0, 0%, 13%);
+    --color-background-grey2: hsl(0, 0%, 16%);
+    --color-background-grey3: hsl(0, 0%, 47%);
+    --color-background-lightGrey: hsl(0, 0%, 50%);
+    --color-background-blue: hsl(230, 35%, 55%);
+    --color-text-black2: hsl(0, 0%, 20%);
+}
+
+/* Reset and Container Configuration */
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-background-pitchBlack);
+    font-family: Geneva, 'Segoe UI', Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    overflow: hidden; /* Prevent global page scrolling */
+    display: flex;
+    flex-direction: column; /* Or row, depending on your app layout */
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+}
+
+/* Global Scrollbar Hiding (Moved out of HTML block & corrected) */
+::-webkit-scrollbar {
+    display: none;
+}
+::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+/* Tooltip & Wrapper */
+.element-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.element-name {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-background-black);
+  color: var(--color-background-white);
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--color-background-grey);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  
+  /* Smoother, screen-reader friendly show/hide */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease-in-out;
+}
+
+/* Show tooltip on hover or focus */
+.element-wrapper:hover .element-name,
+.element-wrapper:focus-within .element-name {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Custom Search Cancel Button */
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none; /* Fixed: standard is -webkit-appearance, not appearance */
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    background-image: url('../icons/cross.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    background-position: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background: var(--color-background-pitchBlack);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+}
+
+span {
+    font-size: 12px;
+    color: var(--color-background-grey3);
+}
+
+a {
+    color: var(--color-text-black2);
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+/* Input Styling */
+input {
+    background-color: hsl(0, 0%, 93%);
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 4px;
+    outline: none;
+}
+
+/* Password eye button wrapper styling */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 8px 0;
+}
+
+.password-wrapper .password-field {
+    margin: 0;
+    padding-right: 45px; /* Keeps typed characters from running underneath the eye icon */
+}
+
+/* ---------- CSS-only password reveal ----------
+   The field is a plain text input masked with -webkit-text-security,
+   toggled by a hidden checkbox. Note: -webkit-text-security is a
+   WebKit/Blink-only property (Chrome, Edge, Safari) — Firefox has no
+   equivalent, so the text will render unmasked there. If cross-browser
+   masking is a hard requirement, the real <input type="password"> +
+   JS toggle is the more portable option. */
+.password-toggle-input ~ .password-field {
+    -webkit-text-security: disc;
+}
+
+.password-toggle-input:checked ~ .password-field {
+    -webkit-text-security: none;
+}
+
+.password-toggle-input ~ .password-toggle .eye-open {
+    display: none;
+}
+
+.password-toggle-input ~ .password-toggle .eye-closed {
+    display: block;
+}
+
+.password-toggle-input:checked ~ .password-toggle .eye-open {
+    display: block;
+}
+
+.password-toggle-input:checked ~ .password-toggle .eye-closed {
+    display: none;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-background-grey3);
+    transition: color 0.15s ease, transform 0.08s ease;
+}
+
+.password-toggle:hover {
+    color: var(--color-text-black2);
+}
+
+.password-toggle:active {
+    transform: translateY(-50%) scale(0.9);
+}
+
+.password-toggle svg,
+.password-toggle .eye-icon {
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevents clicks from triggering on raw svg paths */
+}
+
+/* Button Styling (shared by real <button> elements and label-as-button controls) */
+button,
+.as-button {
+    display: inline-block;
+    border-radius: 20px;
+    border: 1px solid #ff4b2b;
+    background-color: #ff4b2b;
+    color: var(--color-background-white);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:active,
+.as-button:active {
+    transform: scale(0.95);
+}
+
+button:focus,
+.as-button:focus {
+    outline: none;
+}
+
+/* Ghost Button for Overlay Panels */
+button.ghost,
+.as-button.ghost {
+    background-color: transparent;
+    border-color: var(--color-background-white);
+}
+
+/* Forms Layout */
+form {
+    background-color: var(--color-background-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+
+/* Social Icons */
+.social-container {
+    margin: 20px 0;
+}
+
+.social-container a {
+    border: 1px solid #DDDDDD;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+    color: #333;
+    transition: 0.3s;
+}
+
+.social-container a:hover {
+    background-color: #eee;
+}
+
+/* Main Container */
+.container {
+    background-color: var(--color-background-white);
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+/* Sign In Placement */
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+/* Sign Up Placement (hidden behind Sign In initially) */
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* ---------- CSS-only panel slide ----------
+   Driven entirely by the hidden #panel-toggle checkbox via :has().
+   :has() has solid support across current Chrome/Edge/Safari/Firefox,
+   but if you need to support older browsers, keep the old
+   .container.right-panel-active class + JS classList.toggle as a fallback. */
+.container:has(#panel-toggle:checked) .sign-in-container {
+    transform: translateX(100%);
+}
+
+.container:has(#panel-toggle:checked) .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+}
+
+@keyframes show {
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+/* Overlay Container (Red Sliding Block) */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.container:has(#panel-toggle:checked) .overlay-container {
+    transform: translateX(-100%);
+}
+
+/* Overlay Background (Double-width to slide against container shift) */
+.overlay {
+    background: #ff416c;
+    background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #ffffff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.container:has(#panel-toggle:checked) .overlay {
+    transform: translateX(50%);
+}
+
+/* Overlay Panels */
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.container:has(#panel-toggle:checked) .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container:has(#panel-toggle:checked) .overlay-right {
+    transform: translateX(20%);
+}
+
+/* ---------- CSS-only multi-step signup ----------
+   The #step-toggle checkbox lives inside #signUpForm, so calling
+   signUpForm.reset() in JS (e.g. when leaving the sign-up page)
+   automatically un-checks it and snaps the form back to step 1 —
+   no manual classList bookkeeping needed. */
+.form-step {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+#step-toggle:not(:checked) ~ .step-1 {
+    display: flex;
+}
+
+#step-toggle:checked ~ .step-2 {
+    display: flex;
+}
+
+.forgot-password:hover {
+    color: var(--color-background-blue);
+    transform: translateY(-1px);
+}

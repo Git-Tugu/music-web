@@ -7,6 +7,7 @@
     --box-radius-sm: 4px;
     --box-radius-xs: 2px;
 
+    --box-radius-circle-side: 9999px;
     --box-radius-circle: 50%;
     --box-radius-half-circle: 25%;
 
@@ -60,4 +61,11 @@
     --box-shadow-length-short: 2px;
     --box-shadow-length-medium: 4px;
     --box-shadow-length-long: 6px;
+
+    --nav-width: clamp(900px, 90vw, 1200px);
+    --nav-heigth: 50px;
+
+    --playlist-sidebar-width: clamp(200px, 20vw, 500px);
+
+    --box-shadow-default: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }

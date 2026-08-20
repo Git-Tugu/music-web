@@ -327,7 +327,6 @@ export class MusicPlayer extends BaseElement {
             background: var(--dark-purple-200, #221b39);
             color: var(--white-100, #fcfcff);
             border-radius: var(--box-radius-xxxl, 20px);
-            margin: var(--padding-sm, 8px);
             box-shadow: 0 8px 30px color-mix(in srgb, var(--pure-black, #000) 35%, transparent);
           }
 
